@@ -18,6 +18,8 @@ from trdg.string_generator import (create_strings_from_dict,
                                    create_strings_from_wikipedia,
                                    create_strings_randomly)
 from trdg.utils import load_dict, load_fonts
+from trdg.reverse_before_render import reverse_before_render
+from trdg.reverse_after_render import reverse_after_render
 
 
 def margins(margin):
@@ -414,11 +416,16 @@ def main():
             " ".join([get_display(arabic_reshaper.reshape(w)) for w in s.split(" ")[::-1]])
             for s in strings
         ]
+   
+    if args.language == "tw":
+       strings = reverse_before_render(strings)
+            
+
     if args.case == "upper":
         strings = [x.upper() for x in strings]
     if args.case == "lower":
         strings = [x.lower() for x in strings]
-
+	
     string_count = len(strings)
 
     p = Pool(args.thread_count)
@@ -462,8 +469,12 @@ def main():
         pass
     p.terminate()
 
+    if args.language == "tw":
+        strings = reverse_after_render(strings)
+
     if args.name_format == 2:
         # Create file with filename-to-label connections
+        
         with open(
             os.path.join(args.output_dir, "labels.txt"), "w", encoding="utf8"
         ) as f:
@@ -472,7 +483,7 @@ def main():
                 label = strings[i]
                 if args.space_width == 0:
                     label = label.replace(" ", "")
-                f.write("{} {}\n".format(file_name, label))
+                f.write("{}\t {}\n".format(file_name, label))
 
 
 if __name__ == "__main__":
