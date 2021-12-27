@@ -254,7 +254,7 @@ def train(opt, show_number = 2, amp=False):
             torch.nn.utils.clip_grad_norm_(model.parameters(), opt.grad_clip) 
             optimizer.step()
         loss_avg.add(cost)
-        wandb.log({"loss": cost, "loss_avg": loss_avg})
+        
 
         # validation part
         if (i % opt.valInterval == 0) and (i!=0):
@@ -271,6 +271,7 @@ def train(opt, show_number = 2, amp=False):
 
                 # training loss and validation loss
                 loss_log = f'[{i}/{opt.num_iter}] Train loss: {loss_avg.val():0.5f}, Valid loss: {valid_loss:0.5f}, Elapsed_time: {elapsed_time:0.5f}'
+                wandb.log({"Step" : i/opt.num_iter, "Training Loss" : loss_avg.val(), "Valid Loss" : valid_loss, "Elapsed Time" : elapsed_time})
                 loss_avg.reset()
 
                 current_model_log = f'{"Current_accuracy":17s}: {current_accuracy:0.3f}, {"Current_norm_ED":17s}: {current_norm_ED:0.4f}'
@@ -287,7 +288,7 @@ def train(opt, show_number = 2, amp=False):
                 loss_model_log = f'{loss_log}\n{current_model_log}\n{best_model_log}'
                 print(loss_model_log)
                 log.write(loss_model_log + '\n')
-                wandb.log({"loss_log": loss_log, "current_accuracy" : current_accuracy, "best_accuracy" : best_accuracy, "current_norm_ED" : current_norm_ED, "best_norm_ED" : best_norm_ED})
+                wandb.log({"step": i/opt.num_iter, "current_accuracy" : current_accuracy, "best_accuracy" : best_accuracy, "current_norm_ED" : current_norm_ED, "best_norm_ED" : best_norm_ED})
                 # show some predicted results
                 dashed_line = '-' * 80
                 head = f'{"Ground Truth":25s} | {"Prediction":25s} | Confidence Score & T/F'
