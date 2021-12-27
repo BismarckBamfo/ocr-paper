@@ -1,2 +1,0 @@
-# ocr-paper
-ocr-paper
