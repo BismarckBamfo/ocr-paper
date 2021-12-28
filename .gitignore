@@ -110,7 +110,7 @@ ENV/
 env.bak/
 venv.bak/
 trdg/out/
-
+trainer/all_data/**
 # Spyder project settings
 .spyderproject
 .spyproject
