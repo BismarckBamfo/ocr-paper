@@ -23,7 +23,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 import wandb
-wandb.init(project="ocr-paper", entity="bismarckbamfo91")
+wandb.init(project="ocr-paper", name="metrics", entity="bismarckbamfo91")
 
 
 def get_config(file_path):
@@ -46,7 +46,7 @@ def get_config(file_path):
 
 opt = get_config("config_files/tw_filtered_config.yaml")
 
-wandb.config = opt
+#wandb.config = opt
 
 cudnn.benchmark = True
 cudnn.deterministic = False
