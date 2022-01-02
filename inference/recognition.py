@@ -7,8 +7,11 @@ import torchvision.transforms as transforms
 import numpy as np
 from collections import OrderedDict
 import importlib
-from .utils import CTCLabelConverter
+from utils import CTCLabelConverter, AttnLabelConverter, AttrDict
 import math
+import os
+import yaml
+
 
 def custom_mean(x):
     return x.prod()**(2.0/np.sqrt(len(x)))
@@ -153,8 +156,14 @@ def recognizer_predict(model, converter, test_loader, batch_max_length,\
 def get_recognizer(recog_network, network_params, character,\
                    separator_list, dict_list, model_path,\
                    device = 'cpu', quantize = True, *args, **kwargs):
+    with open(os.path.join('arch/', recog_network + '.yaml'), encoding='utf8') as file:
+        opt = yaml.load(file, Loader=yaml.FullLoader)
+        opt = AttrDict(opt)
 
-    converter = CTCLabelConverter(character, separator_list, dict_list)
+    if opt.Prediction == 'Attn':
+        converter = AttnLabelConverter(character, separator_list, dict_list)
+    else:
+        converter = CTCLabelConverter(character, separator_list, dict_list)
     num_class = len(converter.character)
 
     if recog_network == 'generation1':
@@ -163,7 +172,7 @@ def get_recognizer(recog_network, network_params, character,\
         model_pkg = importlib.import_module("easyocr.model.vgg_model")
     else:
         model_pkg = importlib.import_module(recog_network)
-    model = model_pkg.Model(num_class=num_class, **network_params)
+    model = model_pkg.Model(num_class=num_class, **network_params, opt=opt)
 
     if device == 'cpu':
         state_dict = torch.load(model_path, map_location=device)
