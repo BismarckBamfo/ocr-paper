@@ -1,9 +1,9 @@
 import argparse
-import easyocr
+import inference
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Process EasyOCR.")
+    parser = argparse.ArgumentParser(description="Inference script")
     parser.add_argument(
         "-l",
         "--lang",
@@ -233,7 +233,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-    reader = easyocr.Reader(lang_list=args.lang,\
+    reader = inference.Reader(lang_list=args.lang,\
                             gpu=args.gpu,\
                             model_storage_directory=args.model_storage_directory,\
                             user_network_directory=args.user_network_directory,\
