@@ -112,6 +112,7 @@ env.bak/
 venv.bak/
 trdg/out/
 trainer/all_data/**
+inference/models/**
 # Spyder project settings
 .spyderproject
 .spyproject
