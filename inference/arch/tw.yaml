@@ -1,0 +1,15 @@
+network_params:
+  input_channel: 1
+  output_channel: 256
+  hidden_size: 256
+imgH: 64
+imgW : 600
+lang_list:
+         - 'tw'
+character_list: 0123456789!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ €ABƆDEFGHIƐKLMNOPQRSTUVWXYZabɔdefghiɛklmnopqrstuvwxyz
+Transformation : TPS
+FeatureExtraction: ResNet
+SequenceModeling: BiLSTM
+Prediction: Attn
+num_fiducial : 20
+batch_max_length: 34
