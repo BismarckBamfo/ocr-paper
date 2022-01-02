@@ -298,12 +298,13 @@ class CTCLabelConverter(object):
 class AttnLabelConverter(object):
     """ Convert between text-label and text-index """
 
-    def __init__(self, character):
+    def __init__(self, character, separator_list = {}, dict_pathlist = {}):
         # character (str): set of the possible characters.
         # [GO] for the start token of the attention decoder. [s] for end-of-sentence token.
+        dict_character = list(character)
         list_token = ['[GO]', '[s]']  # ['[s]','[UNK]','[PAD]','[GO]']
-        list_character = list(character)
-        self.character = list_token + list_character
+        
+        self.character = list_token + dict_character
 
         self.dict = {}
         for i, char in enumerate(self.character):
