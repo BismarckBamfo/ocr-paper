@@ -37,6 +37,11 @@ class Model(nn.Module):
                 BidirectionalLSTM(self.FeatureExtraction_output, opt.hidden_size, opt.hidden_size),
                 BidirectionalLSTM(opt.hidden_size, opt.hidden_size, opt.hidden_size))
             self.SequenceModeling_output = opt.hidden_size
+        elif opt.SequenceModeling == 'GRU':
+            self.SequenceModeling = nn.Sequential(
+                nn.GRU(self.FeatureExtraction_output, opt.hidden_size, opt.hidden_size),
+                nn.GRU(opt.hidden_size, opt.hidden_size, opt.hidden_size))
+            self.SequenceModeling_output = opt.hidden_size
         else:
             print('No SequenceModeling module specified')
             self.SequenceModeling_output = self.FeatureExtraction_output
