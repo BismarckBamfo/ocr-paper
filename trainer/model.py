@@ -1,7 +1,7 @@
 import torch.nn as nn
 from modules.transformation import TPS_SpatialTransformerNetwork
 from modules.feature_extraction import VGG_FeatureExtractor, RCNN_FeatureExtractor, ResNet_FeatureExtractor
-from modules.sequence_modeling import BidirectionalLSTM
+from modules.sequence_modeling import BidirectionalLSTM, BidirectionalGRU
 from modules.prediction import Attention
 
 class Model(nn.Module):
@@ -37,6 +37,11 @@ class Model(nn.Module):
                 BidirectionalLSTM(self.FeatureExtraction_output, opt.hidden_size, opt.hidden_size),
                 BidirectionalLSTM(opt.hidden_size, opt.hidden_size, opt.hidden_size))
             self.SequenceModeling_output = opt.hidden_size
+        elif opt.SequenceModeling == 'BiGRU':
+            self.SequenceModeling = nn.Sequential(
+                BidirectionalGRU(self.FeatureExtraction_output, opt.hidden_size, opt.hidden_size),
+                BidirectionalGRU(opt.hidden_size, opt.hidden_size, opt.hidden_size))
+            self.SequenceModeling_output = opt.hidden_size
         else:
             print('No SequenceModeling module specified')
             self.SequenceModeling_output = self.FeatureExtraction_output
@@ -60,7 +65,7 @@ class Model(nn.Module):
         visual_feature = visual_feature.squeeze(3)
 
         """ Sequence modeling stage """
-        if self.stages['Seq'] == 'BiLSTM':
+        if not self.stages['Seq'] == "None":
             contextual_feature = self.SequenceModeling(visual_feature)
         else:
             contextual_feature = visual_feature  # for convenience. this is NOT contextually modeled by BiLSTM

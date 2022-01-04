@@ -7,9 +7,9 @@ imgW : 600
 lang_list:
          - 'tw'
 character_list: 0123456789!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ €ABƆDEFGHIƐKLMNOPQRSTUVWXYZabɔdefghiɛklmnopqrstuvwxyz
-Transformation : TPS
+Transformation : None
 FeatureExtraction: ResNet
 SequenceModeling: BiLSTM
-Prediction: Attn
+Prediction: CTC
 num_fiducial : 20
 batch_max_length: 34
