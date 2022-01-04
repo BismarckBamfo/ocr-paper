@@ -1,0 +1,14 @@
+torch
+torchvision>=0.5
+opencv-python-headless
+scipy
+numpy
+Pillow
+scikit-image
+python-bidi
+PyYAML
+requests>=2.20.0
+opencv-python>=4.2.0.32
+tqdm>=4.23.0
+beautifulsoup4>=4.6.0
+diffimg==0.2.3
