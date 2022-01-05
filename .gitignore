@@ -113,6 +113,7 @@ venv.bak/
 trdg/out/
 trdg/all_data/
 trainer/all_data/**
+inference/all_test/**
 inference/models/**
 ocr/
 inference/experiments
