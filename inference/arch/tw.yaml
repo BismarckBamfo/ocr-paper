@@ -13,3 +13,15 @@ SequenceModeling: BiLSTM
 Prediction: CTC
 num_fiducial : 20
 batch_max_length: 34
+test_data : 'all_test/test'
+batch_max_length: 34
+data_filtering_off: False
+batch_size : 32
+workers : 2
+PAD: True
+contrast_adjust: 0.0
+saved_model : 'models/tw.pth'
+exp_name: tw_filtered
+rgb : False
+sensitive: True
+decode : greedy
