@@ -49,9 +49,9 @@ class FakeTextDataGenerator(object):
         output_mask,
         word_split,
         image_dir,
-        stroke_width=0, 
+        stroke_width=0,
         stroke_fill="#282828",
-        image_mode="RGB", 
+        image_mode="RGB",
     ):
         image = None
 
@@ -77,7 +77,7 @@ class FakeTextDataGenerator(object):
                 character_spacing,
                 fit,
                 word_split,
-                stroke_width, 
+                stroke_width,
                 stroke_fill,
             )
         random_angle = rnd.randint(0 - skewing_angle, skewing_angle)
@@ -177,9 +177,10 @@ class FakeTextDataGenerator(object):
         ##############################################################
         # Comparing average pixel value of text and background image #
         ##############################################################
+        """
         try:
             resized_img_st = ImageStat.Stat(resized_img, resized_mask.split()[2])
-            background_img_st = ImageStat.Stat(background_img) 
+            background_img_st = ImageStat.Stat(background_img)
 
             resized_img_px_mean = sum(resized_img_st.mean[:2]) / 3
             background_img_px_mean = sum(background_img_st.mean) / 3
@@ -193,7 +194,7 @@ class FakeTextDataGenerator(object):
                 return
         except Exception as err:
             return
-
+        """
         #############################
         # Place text with alignment #
         #############################
@@ -233,13 +234,13 @@ class FakeTextDataGenerator(object):
         )
         final_image = background_img.filter(gaussian_filter)
         final_mask = background_mask.filter(gaussian_filter)
-        
+
         ############################################
         # Change image mode (RGB, grayscale, etc.) #
         ############################################
-        
+
         final_image = final_image.convert(image_mode)
-        final_mask = final_mask.convert(image_mode) 
+        final_mask = final_mask.convert(image_mode)
 
         #####################################
         # Generate name for resulting image #
