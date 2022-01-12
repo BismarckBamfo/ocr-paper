@@ -116,6 +116,11 @@ trainer/all_data/**
 inference/all_test/**
 inference/models/**
 ocr/
+trdg/dataset_1
+trdg/dataset_2
+trdg/dataset_3
+trdg/dataset_4
+trdg/dataset_copies
 inference/experiments
 # Spyder project settings
 .spyderproject
