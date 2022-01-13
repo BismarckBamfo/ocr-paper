@@ -20,3 +20,4 @@ rm all_data/labels.txt
 rm all_data/train/labels.txt
 rm all_data/val/labels.txt
 rm 'all_data/test/labels.txt'
+cp -r all_data ../trainer && zip -r trainer.zip ../trainer/
