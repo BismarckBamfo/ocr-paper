@@ -1,12 +1,14 @@
 import os
 from tqdm import tqdm
 import subprocess
+from math import ceil
 
 process = subprocess.check_output(["python", "len_files.py", "out"])
-length = int(process)
 
-train_split = 0.9 * length
-val_split = 0.8 * (length - train_split)
+length = int(process)
+train_split = ceil(0.9 * length)
+val_num = ceil(0.8 * (length - train_split))
+val_split = train_split + val_num
 
 
 
