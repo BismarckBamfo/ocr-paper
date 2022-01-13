@@ -8,8 +8,8 @@ def make_train_csv(path):
         train_text = f.readlines()
     for idx, x in enumerate(train_text):
         split_line = x.split('\t')
-        filename.append(x[0])
-        words.append(split_line[0].rstrip('\n').lstrip())
+        filename.append(split_line[0])
+        words.append(split_line[1].rstrip('\n').lstrip())
 
     df = pd.DataFrame(list(zip(filename, words)), columns=['filename', 'words'])
     df.to_csv(f'{path}/train/labels.csv', sep='\t', encoding='utf-8', index=False)
