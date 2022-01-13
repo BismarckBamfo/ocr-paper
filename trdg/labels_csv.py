@@ -6,8 +6,7 @@ def make_train_csv(path):
     words = []
     with open(f'{path}/train/labels.txt', 'r') as f:
         train_text = f.readlines()
-
-    for idx, x in train_text:
+    for idx, x in enumerate(train_text):
         split_line = x.split('\t')
         filename.append(x[0])
         words.append(split_line[0].rstrip('\n').lstrip())
@@ -22,10 +21,10 @@ def make_val_csv(path):
     with open(f'{path}/val/labels.txt', 'r') as f:
         train_text = f.readlines()
 
-    for idx, x in train_text:
+    for idx, x in enumerate(train_text):
         split_line = x.split('\t')
-        filename.append(x[0])
-        words.append(split_line[0].rstrip('\n').lstrip())
+        filename.append(split_line[0])
+        words.append(split_line[1].rstrip('\n').lstrip())
 
     df = pd.DataFrame(list(zip(filename, words)), columns=['filename', 'words'])
     df.to_csv(f'{path}/val/labels.csv', sep='\t', encoding='utf-8', index=False)
@@ -37,10 +36,10 @@ def make_test_csv(path):
     with open(f'{path}/test/labels.txt', 'r') as f:
         train_text = f.readlines()
 
-    for idx, x in train_text:
+    for idx, x in enumerate(train_text):
         split_line = x.split('\t')
-        filename.append(x[0])
-        words.append(split_line[0].rstrip('\n').lstrip())
+        filename.append(split_line[0])
+        words.append(split_line[1].rstrip('\n').lstrip())
 
     df = pd.DataFrame(list(zip(filename, words)), columns=['filename', 'words'])
     df.to_csv(f'{path}/test/labels.csv', sep='\t', encoding='utf-8', index=False)
