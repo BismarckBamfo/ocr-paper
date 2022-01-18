@@ -1,4 +1,11 @@
 def reverse_after_render(strings):
+    '''
+    Replace the special characters in the strings with the characters that are used in the rendering
+    process.
+    
+    :param strings: a list of strings to be rendered
+    :return: The strings with the special characters replaced.
+    '''
     special_char1_small = [chr(390), chr(596), chr(7440),chr(8580)] #Character codes for small "ɔ"
     special_char1_big = [chr(1021), chr(8579)]  #Character codes for big "ɔ"
     special_char2_big = [chr(400)] #Character codes for big "ɛ"

@@ -7,7 +7,20 @@ python offset_datasets.py --path=<dataset_path>
 '''
 datasets = sys.argv[1:]
 print(datasets)
+
 def offset_datasets_and_labels():
+    '''
+    This function is used to offset the labels and images in the datasets.
+        The offset is calculated by the number of images in the previous datasets.
+        For example, if the dataset is dataset_4, then the offset is calculated by the number of images
+    in dataset_3.
+        The offset is used to rename the images and labels in the dataset.
+        The offset is calculated by the following formula:
+            offset = (number of images in previous datasets) * (number of datasets before the current
+    dataset)
+        The offset is used to rename the images and labels in the dataset.    
+    :return: None
+    '''
     for dataset in datasets:
         if dataset.endswith('2'):
             offset = subprocess.check_output(["python", "len_files.py", "dataset_1"])

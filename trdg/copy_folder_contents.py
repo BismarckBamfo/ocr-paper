@@ -3,6 +3,12 @@ import shutil
 import sys
 
 def copy_files():
+    '''
+    Move all the files in the given directories to the target directory.
+    
+    
+    :return: None
+    '''
     src_directories = sys.argv[1:-1]
     tgt_directories = sys.argv[-1]
     for directory in src_directories:

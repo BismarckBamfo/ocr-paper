@@ -6,6 +6,12 @@ Combine labels to one lables.txt file and copy to all_data folder
 python combine_labels.py path1, path2, path3
 '''
 def combine_labels():
+    '''
+    It combines the labels of the four datasets into one file.
+    
+    
+    :return: None
+    '''
     path1, path2, path3, path4 = sys.argv[1:]
 
     with open(f'{path1}/labels.txt') as f:

@@ -13,6 +13,12 @@ val_split = train_split + val_num
 
 
 def copy_labels():
+    '''
+    Copy the labels from the original file to the train, val, and test directories.
+    
+    
+    :return: None
+    '''
     with open('all_data/labels.txt', 'r', encoding='utf8') as f:
         l = f.readlines()
 
