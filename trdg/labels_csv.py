@@ -12,7 +12,7 @@ def make_train_csv(path):
         words.append(split_line[1].rstrip('\n').lstrip())
 
     df = pd.DataFrame(list(zip(filename, words)), columns=['filename', 'words'])
-    df.to_csv(f'{path}/train/labels.csv', sep='\t', encoding='utf-8', index=False)
+    df.to_csv(f'{path}/train/labels.csv', sep=';', encoding='utf-8', index=False)
 
 
 def make_val_csv(path):
@@ -27,7 +27,7 @@ def make_val_csv(path):
         words.append(split_line[1].rstrip('\n').lstrip())
 
     df = pd.DataFrame(list(zip(filename, words)), columns=['filename', 'words'])
-    df.to_csv(f'{path}/val/labels.csv', sep='\t', encoding='utf-8', index=False)
+    df.to_csv(f'{path}/val/labels.csv', sep=';', encoding='utf-8', index=False)
 
 
 def make_test_csv(path):
@@ -42,7 +42,7 @@ def make_test_csv(path):
         words.append(split_line[1].rstrip('\n').lstrip())
 
     df = pd.DataFrame(list(zip(filename, words)), columns=['filename', 'words'])
-    df.to_csv(f'{path}/test/labels.csv', sep='\t', encoding='utf-8', index=False)
+    df.to_csv(f'{path}/test/labels.csv', sep=';', encoding='utf-8', index=False)
 
 
 def main(path):

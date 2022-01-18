@@ -8,7 +8,7 @@ lang_list:
          - 'tw'
 character_list: 0123456789!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ €ABƆDEFGHIƐKLMNOPQRSTUVWXYZabɔdefghiɛklmnopqrstuvwxyz
 Transformation : None
-FeatureExtraction: ResNet
+FeatureExtraction: VGG
 SequenceModeling: BiLSTM
 Prediction: CTC
 num_fiducial : 20

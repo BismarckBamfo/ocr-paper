@@ -1,0 +1,8 @@
+1. Generate each dataset with various variations
+2. Make copy of each dataset
+3. Run offset_dataset.py to rename_files of copied dataset so that files names are sequential
+4. Run combine_labels.py to combine labels.txt from all datasets into one labels.txt
+5. Run copy_dataset.py to copy all datasets into one dataset
+6. Create all_data folder with train, test, val, subfolders
+7. Run copy_file.py to divides files into train, test, val
+8. Run copy_labels.py to divide labels into train, test, val
